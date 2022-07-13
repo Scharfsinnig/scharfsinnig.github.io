@@ -1,0 +1,8 @@
+highlight_theme: mac light
+
+# Avator
+avatar:
+  img: /img/avator.jpeg
+  effect: false # 头像会一直转圈
+
+index_img: /img/blog_bg_01.png
