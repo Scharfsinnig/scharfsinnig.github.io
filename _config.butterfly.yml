@@ -74,6 +74,11 @@ cover:
     - /img/cover/bubble.jpg
     - /img/cover/code_01.jpg
     - /img/cover/machine.jpg
+
+error_img:
+  flink: /img/friend_404.gif
+  post_page: /img/404.jpg
+
 # --------------------------------------
 
 
@@ -90,7 +95,7 @@ menu:
     相册: /photos/ || fa fa-camera-retro
     音乐: /music/ || fa fa-music
     影视: /movies/ || fas fa-video
-#  友链: /links/ || fa fa-link
+  #  友链: /links/ || fa fa-link
   留言信箱: /comment/ || fa fa-paper-plane
   关于博主: /about/ || fas fa-heart
 
@@ -100,4 +105,27 @@ local_search:
   labels:
     input_placeholder: Search for Posts
     hits_empty: "We didn't find any results for the search: ${query}" # 如果没有查到内容相关内容显示
+# --------------------------------------
+
+
+# --------------------------------------
+# 打字效果
+activate_power_mode:
+  enable: true
+  colorful: true # open particle animation (冒光特效)
+  shake: true #  open shake (抖動特效)
+  mobile: false
+# --------------------------------------
+
+
+# --------------------------------------
+# 字数统计
+wordcount:
+  enable: true
+  post_wordcount: true
+  min2read: true
+  total_wordcount: true
+# --------------------------------------
+
+
 # --------------------------------------
