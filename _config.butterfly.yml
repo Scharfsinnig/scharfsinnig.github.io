@@ -5,4 +5,26 @@ avatar:
   img: /img/avator.jpeg
   effect: false # 头像会一直转圈
 
-index_img: /img/blog_bg_01.png
+index_img: /img/ai.jpg
+
+# 顶部图片信息
+default_top_img: /img/top_img.jpg
+
+# 标签图片
+tag_img: /img/industry.jpg
+
+cover:
+  index_enable: true #  是否展示文章封面
+  aside_enable: true
+  archives_enable: true
+  position: both # 封面展示的位置 left/right/both
+  # 当没有设置cover时，默认展示的文章封面
+  default_cover:
+    # 当配置多张图片时，会随机选择一张作为 cover. 此时写法为
+    - /img/cover/ai_01.jpg
+    - /img/cover/ai_02.jpg
+    - /img/cover/ai_03.jpg
+    - /img/cover/ai_04.jpg
+    - /img/cover/bubble.jpg
+    - /img/cover/code_01.jpg
+    - /img/cover/machine.jpg
