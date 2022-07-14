@@ -32,8 +32,34 @@ More info: [Generating](https://hexo.io/docs/generating.html)
 
 ### Deploy to remote sites
 
-``` bash
-$ hexo deploy
+``` Rust
+fn main() { 
+    println!("Hello world!");
+}
+
+fn main() { 
+    println!("Hello world!");
+}
+
+fn main() { 
+    println!("Hello world!");
+}
+
+fn main() { 
+    println!("Hello world!");
+}
 ```
+
+> - mermaid 图
+
+{% mermaid %}
+pie
+    title Key elements in Product X
+    "Calcium" : 42.96
+    "Potassium" : 50.05
+    "Magnesium" : 10.01
+    "Iron" :  5
+{% endmermaid %}
+
 
 More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)
