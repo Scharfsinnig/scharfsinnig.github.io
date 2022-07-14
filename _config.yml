@@ -4,13 +4,12 @@
 
 # Site
 title: SCHARFSINNIGの博客
-subtitle:
-description: '记录个人生活'
+subtitle: 日常碎碎念
+description: 'O ever youthful.O ever weeping.'
 keywords: 'Scharfsinnig'
 author: Scharfsinnig
 language: zh-CN
 timezone: 'Asia/Shanghai'
-
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -93,6 +92,8 @@ pagination_dir: page
 # Include / Exclude file(s)
 ## include:/exclude: options only apply to the 'source/' folder
 include:
+    - .nojekyll
+
 exclude:
 ignore:
 

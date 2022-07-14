@@ -1,10 +1,56 @@
+# --------------------------------------
+# 代码样式快
 highlight_theme: mac light
+# copy button 是否显示复制按钮
+highlight_copy: true
+# show the code language 展示代码块语言
+highlight_lang: true
+# true: 打开文章默认折叠代码块内容 / false: 打开文章默认展开代码块内容
+highlight_shrink: false
+highlight_height_limit: false # unit: px
+# 是否关闭滚动条
+code_word_wrap: true
 
-# Avator
+favicon: /img/industry.jpg
+# --------------------------------------
+
+
+# --------------------------------------
+# the subtitle on homepage (主頁subtitle)
+subtitle:
+  enable: true
+  # Typewriter Effect (开启打字效果)
+  effect: true
+  # loop (循環打字)
+  loop: true
+  # source調用第三方服務
+  # source: false 關閉調用
+  # source: 1  調用搏天api的隨機語錄（簡體）
+  # source: 2  調用一言網的一句話（簡體）
+  # source: 3  調用一句網（簡體）
+  # source: 4  調用今日詩詞（簡體）
+  # subtitle 會先顯示 source , 再顯示 sub 的內容
+  source: false
+  # 如果有英文逗号' , ',请使用转义字元 &#44;
+  # 如果有英文双引号' " ',请使用转义字元 &quot;
+  # 开头不允許转义字元，如需要，请把整個句子用双引号包住
+  # 如果关闭打字效果，subtitle只会现示sub的第一行文字
+  sub:
+    - O ever youthful. O ever weeping.
+    - Namo Amitābha
+    - 知足不辱，知止不殆
+    - 夫唯不争，故天下莫能与之争
+    - 大丈夫处其厚，不居其薄;处其实，不居其华
+# --------------------------------------
+
+
+# --------------------------------------
+# 头像信息
 avatar:
   img: /img/avator.jpeg
   effect: false # 头像会一直转圈
 
+# 首页图片配置
 index_img: /img/ai.jpg
 
 # 顶部图片信息
@@ -28,3 +74,30 @@ cover:
     - /img/cover/bubble.jpg
     - /img/cover/code_01.jpg
     - /img/cover/machine.jpg
+# --------------------------------------
+
+
+# --------------------------------------
+# 导航信息配置
+menu:
+  主页: / || fas fa-home
+  博文 || fa fa-graduation-cap:
+    分类: /categories/ || fa fa-archive
+    标签: /tags/ || fa fa-tags
+    归档: /archives/ || fa fa-folder-open
+  生活 || fas fa-list:
+    分享: /shuoshuo/ || fa fa-comments-o
+    相册: /photos/ || fa fa-camera-retro
+    音乐: /music/ || fa fa-music
+    影视: /movies/ || fas fa-video
+#  友链: /links/ || fa fa-link
+  留言信箱: /comment/ || fa fa-paper-plane
+  关于博主: /about/ || fas fa-heart
+
+# 本地搜索
+local_search:
+  enable: true
+  labels:
+    input_placeholder: Search for Posts
+    hits_empty: "We didn't find any results for the search: ${query}" # 如果没有查到内容相关内容显示
+# --------------------------------------

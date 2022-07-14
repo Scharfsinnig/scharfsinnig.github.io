@@ -1212,6 +1212,14 @@
     "hexo-pagination" "0.0.2"
     "object-assign" "^4.0.1"
 
+"hexo-generator-search@^2.4.3":
+  "integrity" "sha512-Z5hfZq2g3np/Tgdp2q9HobfIvU6Pdz89tnTurc1IIq/vW0MHgDynk0Aiv6kvMtKWthnZ5l0iEMT3YLN35NdYwQ=="
+  "resolved" "https://registry.npmmirror.com/hexo-generator-search/-/hexo-generator-search-2.4.3.tgz"
+  "version" "2.4.3"
+  dependencies:
+    "nunjucks" "^3.0.1"
+    "utils-merge" "^1.0.0"
+
 "hexo-generator-searchdb@^1.4.0":
   "integrity" "sha512-TkwxlqxptRIXHwYeI/V32O2TxXkfqWa37Rrmg347Q+YT1eqk7vQ31vR4zLudBAcSr85ST0VUedYd1/gLBSJl9Q=="
   "resolved" "https://registry.npmmirror.com/hexo-generator-searchdb/-/hexo-generator-searchdb-1.4.0.tgz"
@@ -2100,7 +2108,7 @@
   "resolved" "https://registry.npmmirror.com/normalize-path/-/normalize-path-3.0.0.tgz"
   "version" "3.0.0"
 
-"nunjucks@^3.2.1", "nunjucks@^3.2.2", "nunjucks@^3.2.3":
+"nunjucks@^3.0.1", "nunjucks@^3.2.1", "nunjucks@^3.2.2", "nunjucks@^3.2.3":
   "integrity" "sha512-psb6xjLj47+fE76JdZwskvwG4MYsQKXUtMsPh6U0YMvmyjRtKRFcxnlXGWglNybtNTNVmGdp94K62/+NjF5FDQ=="
   "resolved" "https://registry.npmmirror.com/nunjucks/-/nunjucks-3.2.3.tgz"
   "version" "3.2.3"
