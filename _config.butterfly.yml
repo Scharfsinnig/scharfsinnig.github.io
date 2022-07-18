@@ -87,7 +87,7 @@ favicon: /img/index/industry.jpg
 
 # Avatar (頭像)
 avatar:
-  img: /img/index/avator.jpeg
+  img: /img/index/avator.png
   effect: false # 头像会一直转圈
 
 # Disable all banner image
