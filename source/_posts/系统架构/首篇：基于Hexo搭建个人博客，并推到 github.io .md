@@ -1,6 +1,16 @@
 ---
 title: 首篇：Hexo+Butterfly 常用插件、语法记录
+date: 2022-07-15 10:00:00
+categories:
+  - 系统架构
+tags:
+  - Hexo
+  - Butterfly
+  - 博客搭建
+  - 技术记录
 abbrlink: 36025
+cover: /img/cover/hexo-blog.jpg
+description: Hexo博客搭建过程记录，包含常用插件和语法说明
 ---
 欢迎来到 [Scharfsinnigの博客](https://scharfsinnig.github.io/)! 当前的博客框架，是基于 Hexo 搭建的，
 ## Quick Start
