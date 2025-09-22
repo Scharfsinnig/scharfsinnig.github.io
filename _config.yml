@@ -4,8 +4,8 @@
 
 # Site
 title: SCHARFSINNIGの博客
-subtitle: 日常碎碎念
-description: 'O ever youthful.O ever weeping.'
+subtitle: 记录思考点滴
+description: '博学、慎思、明辨、笃行 | O ever youthful.O ever weeping.'
 keywords: 'Scharfsinnig'
 author: Scharfsinnig
 language: zh-CN
@@ -109,5 +109,5 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/Scharfsinnig/scharfsinnig.github.io.git
+  repo: git@github.com:Scharfsinnig/scharfsinnig.github.io.git
   branch: main
