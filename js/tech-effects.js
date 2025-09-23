@@ -31,6 +31,16 @@ function initMeteorShower() {
 // 点击粒子爆炸效果
 function initParticleExplosion() {
     document.addEventListener('click', function(e) {
+        // 如果点击的是链接、按钮或其他交互元素，不执行特效
+        if (e.target.tagName === 'A' ||
+            e.target.tagName === 'BUTTON' ||
+            e.target.closest('a') ||
+            e.target.closest('button') ||
+            e.target.closest('.article-title') ||
+            e.target.closest('.post_cover')) {
+            return;
+        }
+
         // 随机选择效果类型
         const effectType = Math.random();
         if (effectType < 0.3) {
