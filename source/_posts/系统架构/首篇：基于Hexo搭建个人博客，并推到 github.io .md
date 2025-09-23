@@ -12,7 +12,7 @@ tags:
   - 零基础教程
   - GitHub Pages
 abbrlink: 36025
-cover: https://cdn.jsdelivr.net/gh/Scharfsinnig/scharfsinnig.github.io@main/source/images/hexo-tutorial/hexo-cover.jpg
+cover: https://cdn.jsdelivr.net/gh/Scharfsinnig/scharfsinnig.github.io@main/images/hexo-tutorial/hexo-cover.jpg
 description: 从零开始搭建Hexo+Butterfly主题的个人博客，包含环境搭建、主题配置、部署到GitHub Pages的完整流程，小白也能轻松上手
 ---
 ## 前言：为什么选择Hexo+Butterfly？
