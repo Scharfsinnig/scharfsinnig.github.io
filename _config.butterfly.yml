@@ -900,9 +900,8 @@ CDN:
 
   # CDN选项配置
   option:
-    # 使用当前博客仓库的jsDelivr CDN
-    # 格式: https://cdn.jsdelivr.net/gh/用户名/仓库名@分支名/
-    jsdelivr_url: https://cdn.jsdelivr.net/gh/Scharfsinnig/scharfsinnig.github.io@main/
+    # 禁用jsdelivr_url，避免自动添加source/前缀
+    # jsdelivr_url: https://cdn.jsdelivr.net/gh/Scharfsinnig/scharfsinnig.github.io@main/
   # main_css:
   # main:
   # utils:

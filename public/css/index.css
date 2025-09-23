@@ -9008,6 +9008,30 @@ body::before {
   -ms-animation: scan 2s linear;
   animation: scan 2s linear;
 }
+#page-header {
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+@media screen and (max-width: 768px) {
+  #page-header {
+    background-attachment: scroll !important;
+    background-size: cover !important;
+    min-height: 100vh !important;
+  }
+}
+#web_bg {
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+@media screen and (max-width: 768px) {
+  #web_bg {
+    background-attachment: scroll !important;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .meteor,
   .data-bit,
