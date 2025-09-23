@@ -516,7 +516,7 @@ tag_ui: # 留空或 index
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+background: url(https://cdn.jsdelivr.net/gh/Scharfsinnig/scharfsinnig.github.io@main/source/images/backgrounds/ai.jpg)
 
 # Footer Background
 footer_bg: false
