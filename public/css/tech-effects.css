@@ -119,6 +119,7 @@ body::before {
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(0,245,255,0.1), transparent);
   transition: left 0.5s ease;
+  pointer-events: none;
   z-index: 1;
 }
 .card-widget:hover::before,

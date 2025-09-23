@@ -85,9 +85,9 @@ katex:
 # Favicon（網站圖標）- 使用jsDelivr CDN加速
 favicon: https://cdn.jsdelivr.net/gh/Scharfsinnig/scharfsinnig.github.io@main/images/icons/favicon.png
 
-# Avatar (頭像) - 使用jsDelivr CDN加速
+# Avatar (頭像) - 使用本地路径
 avatar:
-  img: https://cdn.jsdelivr.net/gh/Scharfsinnig/scharfsinnig.github.io@main/images/avatars/avator.png
+  img: /images/avatars/avator.png
   effect: false # 头像会一直转圈
 
 # Disable all banner image
@@ -835,10 +835,10 @@ pangu:
 # Lazyload (圖片懶加載)
 # https://github.com/verlok/vanilla-lazyload
 lazyload:
-  enable: true
-  field: site # site/post
+  enable: false
+  field: post # site/post
   placeholder: /img/loading.gif
-  blur: true
+  blur: false
 
 # PWA
 # See https://github.com/JLHwung/hexo-offline
@@ -885,7 +885,7 @@ tech_effects:
 CDN:
   # 主题内部资源CDN提供商 (主題內部 js 的 cdn 配置)
   # option: local/jsdelivr/unpkg/cdnjs/custom
-  internal_provider: jsdelivr
+  internal_provider: local
 
   # 第三方资源CDN提供商 (第三方 js 的 cdn 配置)
   # option: local/jsdelivr/unpkg/cdnjs/custom

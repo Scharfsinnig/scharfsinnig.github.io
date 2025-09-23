@@ -12,7 +12,7 @@ tags:
   - 零基础教程
   - GitHub Pages
 abbrlink: 36025
-cover: https://cdn.jsdelivr.net/gh/Scharfsinnig/scharfsinnig.github.io@main/images/hexo-tutorial/hexo-cover.jpg
+cover: /images/hexo-tutorial/hexo-cover.jpg
 description: 从零开始搭建Hexo+Butterfly主题的个人博客，包含环境搭建、主题配置、部署到GitHub Pages的完整流程，小白也能轻松上手
 ---
 ## 前言：为什么选择Hexo+Butterfly？
@@ -299,7 +299,7 @@ favicon: /img/favicon.png
 index_img: /img/bg.jpg
 
 # 默认文章封面
-default_top_img: /img/default_bg.jpg
+default_top_img: /images/covers/ai_01.jpg
 
 # 页脚设置
 footer:
@@ -403,7 +403,7 @@ categories:
 tags:
   - 第一篇
   - 测试
-cover: /img/post_cover.jpg
+cover: /images/covers/ai_02.jpg
 description: 这是我的第一篇博客文章
 ---
 
@@ -422,7 +422,7 @@ description: 这是我的第一篇博客文章
 
 [链接文字](https://example.com)
 
-![图片描述](/img/example.jpg)
+![图片描述](/images/hexo-tutorial/hexo-cover.jpg)
 ```
 
 ### 5.3 预览文章
@@ -567,7 +567,7 @@ hexo g -d
 
 [链接文字](https://example.com)
 
-![图片描述](/img/example.jpg)
+![图片描述](/images/hexo-tutorial/hexo-cover.jpg)
 
 `行内代码`
 
@@ -709,7 +709,7 @@ hexo s
 **解决方案**：
 1. 确认图片路径正确
 2. 图片放在 `source/images/` 目录下
-3. 使用相对路径：`/images/图片名.jpg`
+3. 使用相对路径：`/images/hexo-tutorial/hexo-cover.jpg`
 
 ## 第十步：备份和版本控制
 
@@ -811,10 +811,10 @@ categories:
 tags:
   - 标签1
   - 标签2
-cover: /images/cover.jpg
+cover: /images/covers/ai_03.jpg
 description: 文章描述
 keywords: 关键词1,关键词2
-top_img: /images/top.jpg
+top_img: /images/covers/ai_04.jpg
 comments: true
 toc: true
 ---
