@@ -424,6 +424,15 @@ body::before {
     background-attachment: scroll !important;
   }
 }
+/* 确保下拉箭头可点击 */
+#scroll-down {
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+}
+#scroll-down .scroll-down-effects {
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+}
 /* 高性能模式 */
 @media (prefers-reduced-motion: reduce) {
   .meteor,
