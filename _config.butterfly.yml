@@ -83,28 +83,28 @@ katex:
 # --------------------------------------
 
 # Favicon（網站圖標）- 使用jsDelivr CDN加速
-favicon: https://cdn.jsdelivr.net/gh/blog3944439/scharfsinnig.github.io@main/source/img/favicon.png
+favicon: https://cdn.jsdelivr.net/gh/Scharfsinnig/scharfsinnig.github.io@main/source/img/favicon.png
 
 # Avatar (頭像) - 使用jsDelivr CDN加速
 avatar:
-  img: https://cdn.jsdelivr.net/gh/blog3944439/scharfsinnig.github.io@main/source/img/index/avator.png
+  img: https://cdn.jsdelivr.net/gh/Scharfsinnig/scharfsinnig.github.io@main/source/img/index/avator.png
   effect: false # 头像会一直转圈
 
 # Disable all banner image
 disable_top_img: false
 
 # The banner image of home page - 使用jsDelivr CDN加速
-index_img: https://cdn.jsdelivr.net/gh/blog3944439/scharfsinnig.github.io@main/source/img/index/ai.jpg
+index_img: https://cdn.jsdelivr.net/gh/Scharfsinnig/scharfsinnig.github.io@main/source/img/index/ai.jpg
 
 # If the banner of page not setting, it will show the top_img - 使用jsDelivr CDN加速
-default_top_img: https://cdn.jsdelivr.net/gh/blog3944439/scharfsinnig.github.io@main/source/img/index/top_img.jpg
+default_top_img: https://cdn.jsdelivr.net/gh/Scharfsinnig/scharfsinnig.github.io@main/source/img/index/top_img.jpg
 
 # The banner image of archive page - 使用jsDelivr CDN加速
-archive_img: https://cdn.jsdelivr.net/gh/blog3944439/scharfsinnig.github.io@main/source/img/index/industry.jpg
+archive_img: https://cdn.jsdelivr.net/gh/Scharfsinnig/scharfsinnig.github.io@main/source/img/index/industry.jpg
 
 # If the banner of tag page not setting, it will show the top_img
 # note: tag page, not tags page (子標籤頁面的 top_img) - 使用jsDelivr CDN加速
-tag_img: https://cdn.jsdelivr.net/gh/blog3944439/scharfsinnig.github.io@main/source/img/index/industry.jpg
+tag_img: https://cdn.jsdelivr.net/gh/Scharfsinnig/scharfsinnig.github.io@main/source/img/index/industry.jpg
 
 # The banner image of tag page
 # format:
@@ -902,7 +902,7 @@ CDN:
   option:
     # 使用当前博客仓库的jsDelivr CDN
     # 格式: https://cdn.jsdelivr.net/gh/用户名/仓库名@分支名/
-    jsdelivr_url: https://cdn.jsdelivr.net/gh/blog3944439/scharfsinnig.github.io@main/
+    jsdelivr_url: https://cdn.jsdelivr.net/gh/Scharfsinnig/scharfsinnig.github.io@main/
   # main_css:
   # main:
   # utils:
