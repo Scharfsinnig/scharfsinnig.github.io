@@ -9032,6 +9032,14 @@ body::before {
     background-attachment: scroll !important;
   }
 }
+#scroll-down {
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+}
+#scroll-down .scroll-down-effects {
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+}
 @media (prefers-reduced-motion: reduce) {
   .meteor,
   .data-bit,
