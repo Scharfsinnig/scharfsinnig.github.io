@@ -19,7 +19,7 @@ function initMeteorShower() {
     const meteorShower = document.createElement('div');
     meteorShower.className = 'meteor-shower';
     document.body.appendChild(meteorShower);
-    
+
     // 创建流星
     for (let i = 0; i < 9; i++) {
         const meteor = document.createElement('div');
@@ -157,7 +157,7 @@ function initDataStream() {
     const dataStream = document.createElement('div');
     dataStream.className = 'data-stream';
     document.body.appendChild(dataStream);
-    
+
     setInterval(() => {
         createDataBit();
     }, 200);
@@ -168,9 +168,9 @@ function createDataBit() {
     dataBit.className = 'data-bit';
     dataBit.style.left = Math.random() * window.innerWidth + 'px';
     dataBit.style.animationDelay = Math.random() * 2 + 's';
-    
+
     document.querySelector('.data-stream').appendChild(dataBit);
-    
+
     setTimeout(() => {
         dataBit.remove();
     }, 4000);
@@ -220,7 +220,7 @@ function createEnergyRipple(x, y) {
     ripple.style.left = (x - 100) + 'px';
     ripple.style.top = (y - 100) + 'px';
     document.body.appendChild(ripple);
-    
+
     setTimeout(() => {
         ripple.remove();
     }, 1500);
@@ -277,9 +277,9 @@ function createMouseTrail(x, y) {
     trail.style.zIndex = '9999';
     trail.style.boxShadow = '0 0 10px #00f5ff';
     trail.style.animation = 'fadeOut 0.5s ease-out forwards';
-    
+
     document.body.appendChild(trail);
-    
+
     setTimeout(() => {
         trail.remove();
     }, 500);
@@ -316,9 +316,9 @@ function createKeyboardEffect() {
     effect.style.background = 'linear-gradient(90deg, transparent, #00f5ff, transparent)';
     effect.style.zIndex = '9999';
     effect.style.animation = 'keyboardPulse 0.3s ease-out';
-    
+
     document.body.appendChild(effect);
-    
+
     setTimeout(() => {
         effect.remove();
     }, 300);
@@ -348,7 +348,7 @@ document.head.appendChild(keyboardStyle);
 let scrollTimeout;
 window.addEventListener('scroll', function() {
     showScrollEnergyBar();
-    
+
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(() => {
         hideScrollEnergyBar();
@@ -369,7 +369,7 @@ function showScrollEnergyBar() {
         energyBar.style.transition = 'width 0.1s ease';
         document.body.appendChild(energyBar);
     }
-    
+
     const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
     energyBar.style.width = scrollPercent + '%';
     energyBar.style.opacity = '1';
@@ -562,3 +562,28 @@ function createQuantumBurst(x, y) {
         burst.remove();
     }, 2000);
 }
+
+
+// Ensure LazyLoad initializes even if main.js runs before the library loads
+(function ensureLazyLoadInit(){
+  const init = () => {
+    try {
+      if (window.LazyLoad && !window.lazyLoadInstance) {
+        window.lazyLoadInstance = new LazyLoad({
+          elements_selector: 'img',
+          threshold: 0,
+          data_src: 'data-lazy-src'
+        });
+      }
+    } catch (e) {
+      // swallow
+    }
+  };
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    init();
+  } else {
+    document.addEventListener('DOMContentLoaded', init);
+  }
+  window.addEventListener('load', init);
+  setTimeout(init, 800);
+})();
