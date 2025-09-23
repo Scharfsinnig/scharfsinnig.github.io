@@ -433,6 +433,29 @@ body::before {
   z-index: 10000 !important;
   pointer-events: auto !important;
 }
+/* 确保导航栏文字在所有背景下都清晰可见 */
+#nav {
+  z-index: 10001 !important;
+}
+#nav #site-name {
+  color: #fff !important;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,245,255,0.6) !important;
+  font-weight: bold !important;
+  z-index: 10001 !important;
+}
+#nav #site-name:hover {
+  color: #00f5ff !important;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.9), 0 0 25px rgba(0,245,255,0.8) !important;
+}
+/* 确保导航菜单项也清晰可见 */
+#nav .menus_items .menus_item a {
+  color: #fff !important;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7) !important;
+}
+#nav .menus_items .menus_item a:hover {
+  color: #00f5ff !important;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.8), 0 0 15px rgba(0,245,255,0.6) !important;
+}
 /* 高性能模式 */
 @media (prefers-reduced-motion: reduce) {
   .meteor,
