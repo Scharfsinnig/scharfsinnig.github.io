@@ -8957,11 +8957,67 @@ body::before {
     max-height: 150px;
   }
 }
+.matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+.matrix-column {
+  position: absolute;
+  top: -100%;
+  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+  font-size: 14px;
+  color: #00ff41;
+  text-shadow: 0 0 5px #00ff41;
+  white-space: nowrap;
+  -webkit-animation: matrix-fall linear infinite;
+  -moz-animation: matrix-fall linear infinite;
+  -o-animation: matrix-fall linear infinite;
+  -ms-animation: matrix-fall linear infinite;
+  animation: matrix-fall linear infinite;
+  line-height: 1.2;
+}
+.scan-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: -webkit-linear-gradient(0deg, transparent, #00ff41, transparent);
+  background: -moz-linear-gradient(0deg, transparent, #00ff41, transparent);
+  background: -o-linear-gradient(0deg, transparent, #00ff41, transparent);
+  background: -ms-linear-gradient(0deg, transparent, #00ff41, transparent);
+  background: linear-gradient(90deg, transparent, #00ff41, transparent);
+  z-index: 9999;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  pointer-events: none;
+}
+.scan-line.active {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  -webkit-animation: scan 2s linear;
+  -moz-animation: scan 2s linear;
+  -o-animation: scan 2s linear;
+  -ms-animation: scan 2s linear;
+  animation: scan 2s linear;
+}
 @media (prefers-reduced-motion: reduce) {
   .meteor,
   .data-bit,
   .digital-char,
-  .light-beam {
+  .light-beam,
+  .matrix-column {
     -webkit-animation: none !important;
     -moz-animation: none !important;
     -o-animation: none !important;
@@ -10919,5 +10975,117 @@ body::before {
     -o-transform: translate(-2px, 2px);
     -ms-transform: translate(-2px, 2px);
     transform: translate(-2px, 2px);
+  }
+}
+@-moz-keyframes matrix-fall {
+  0% {
+    top: -100%;
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+}
+@-webkit-keyframes matrix-fall {
+  0% {
+    top: -100%;
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+}
+@-o-keyframes matrix-fall {
+  0% {
+    top: -100%;
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+}
+@keyframes matrix-fall {
+  0% {
+    top: -100%;
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+}
+@-moz-keyframes scan {
+  0% {
+    top: 0;
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+}
+@-webkit-keyframes scan {
+  0% {
+    top: 0;
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+}
+@-o-keyframes scan {
+  0% {
+    top: 0;
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+}
+@keyframes scan {
+  0% {
+    top: 0;
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
   }
 }

@@ -358,12 +358,52 @@ body::before {
     max-height: 150px;
   }
 }
+/* 黑客帝国代码雨效果 */
+.matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.8;
+}
+.matrix-column {
+  position: absolute;
+  top: -100%;
+  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+  font-size: 14px;
+  color: #00ff41;
+  text-shadow: 0 0 5px #00ff41;
+  white-space: nowrap;
+  animation: matrix-fall linear infinite;
+  line-height: 1.2;
+}
+/* 扫描线效果 - 只在交互时触发 */
+.scan-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ff41, transparent);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+}
+.scan-line.active {
+  opacity: 1;
+  animation: scan 2s linear;
+}
 /* 高性能模式 */
 @media (prefers-reduced-motion: reduce) {
   .meteor,
   .data-bit,
   .digital-char,
-  .light-beam {
+  .light-beam,
+  .matrix-column {
     animation: none !important;
   }
   .holographic-glitch::before,
@@ -1417,5 +1457,85 @@ body::before {
   }
   80% {
     transform: translate(-2px, 2px);
+  }
+}
+@-moz-keyframes matrix-fall {
+  0% {
+    top: -100%;
+    opacity: 1;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+  }
+}
+@-webkit-keyframes matrix-fall {
+  0% {
+    top: -100%;
+    opacity: 1;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+  }
+}
+@-o-keyframes matrix-fall {
+  0% {
+    top: -100%;
+    opacity: 1;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+  }
+}
+@keyframes matrix-fall {
+  0% {
+    top: -100%;
+    opacity: 1;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+  }
+}
+@-moz-keyframes scan {
+  0% {
+    top: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+  }
+}
+@-webkit-keyframes scan {
+  0% {
+    top: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+  }
+}
+@-o-keyframes scan {
+  0% {
+    top: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+  }
+}
+@keyframes scan {
+  0% {
+    top: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
   }
 }

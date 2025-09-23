@@ -166,11 +166,35 @@ function createDataBit() {
     }, 4000);
 }
 
-// 扫描线效果
+// 交互式扫描线效果
 function initScanLine() {
+    // 页面加载时触发扫描线
+    setTimeout(createInteractiveScanLine, 500);
+
+    // 添加交互事件监听器
+    document.addEventListener('click', createInteractiveScanLine);
+    document.addEventListener('keydown', createInteractiveScanLine);
+
+    // 页面切换时触发扫描线
+    window.addEventListener('beforeunload', createInteractiveScanLine);
+}
+
+function createInteractiveScanLine() {
     const scanLine = document.createElement('div');
     scanLine.className = 'scan-line';
     document.body.appendChild(scanLine);
+
+    // 激活扫描线
+    setTimeout(() => {
+        scanLine.classList.add('active');
+    }, 100);
+
+    // 2秒后移除扫描线
+    setTimeout(() => {
+        if (scanLine.parentNode) {
+            scanLine.parentNode.removeChild(scanLine);
+        }
+    }, 2100);
 }
 
 // 能量波纹效果
