@@ -109,5 +109,6 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:Scharfsinnig/scharfsinnig.github.io.git
+  repo: https://github.com/Scharfsinnig/scharfsinnig.github.io.git
   branch: main
+  message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}"
