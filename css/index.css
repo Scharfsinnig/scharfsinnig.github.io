@@ -8608,6 +8608,7 @@ body::before {
   -o-transition: left 0.5s ease;
   -ms-transition: left 0.5s ease;
   transition: left 0.5s ease;
+  pointer-events: none;
   z-index: 1;
 }
 .card-widget:hover::before,
