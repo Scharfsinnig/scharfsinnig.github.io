@@ -397,6 +397,33 @@ body::before {
   opacity: 1;
   animation: scan 2s linear;
 }
+/* 首页背景图片自适应优化 */
+#page-header {
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+/* 移动端背景优化 */
+@media screen and (max-width: 768px) {
+  #page-header {
+    background-attachment: scroll !important;
+    background-size: cover !important;
+    min-height: 100vh !important;
+  }
+}
+/* 网站背景自适应 */
+#web_bg {
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+@media screen and (max-width: 768px) {
+  #web_bg {
+    background-attachment: scroll !important;
+  }
+}
 /* 高性能模式 */
 @media (prefers-reduced-motion: reduce) {
   .meteor,
