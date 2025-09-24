@@ -9,6 +9,26 @@
 - **主站**：[scharfsinnig.github.io](https://scharfsinnig.github.io)
 - **GitLab Pages**：[blog3944439.gitlab.io/scharfsinnig.github.io](https://blog3944439.gitlab.io/scharfsinnig.github.io)
 
+
+## ⚡ 快速迁移 / 一键还原环境
+
+其他机器只需按以下步骤即可获得与当前笔记本一致的环境：
+
+1. 克隆仓库
+   - git clone https://gitlab.com/Scharfsinnig/scharfsinnig.github.io.git
+   - 或使用你的镜像仓库（GitHub 等）地址
+2. 进入目录并安装依赖（锁定版本）
+   - cd scharfsinnig.github.io
+   - npm ci
+3. 本地预览（开发模式）
+   - npm run server  # 访问 http://localhost:4000/
+4. 构建与部署（可选）
+   - npm run build && npm run deploy
+
+说明
+- 主题 Butterfly 已并入主仓库（非子模块），无需额外初始化，clone 后即可使用
+- 如遇 Node 版本差异导致安装失败，建议使用 Node 18 LTS（或根据本机 Node 版本调整），必要时可使用 nvm 切换
+
 ## 📚 内容分类
 
 ### 🤖 AI Agent
