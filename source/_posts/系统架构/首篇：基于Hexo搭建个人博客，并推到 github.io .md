@@ -931,11 +931,6 @@ pie
 [size]        : [可選] 按鈕大小
                       larger/留空
 ```
-This is my website, click the button {% btn 'https://butterfly.js.org/',Butterfly %}
-This is my website, click the button {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right %}
-This is my website, click the button {% btn 'https://butterfly.js.org/',Butterfly,,outline %}
-This is my website, click the button {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline %}
-This is my website, click the button {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,larger %}
 
 
 More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)

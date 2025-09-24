@@ -1003,12 +1003,8 @@
 
 
 <h2 id="Button-信息"><a href="#Button-信息" class="headerlink" title="Button 信息"></a>Button 信息</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% btn [url],[text],[icon],[color] [style] [layout] [position] [size] %&#125;</span><br><span class="line"></span><br><span class="line">[url]         : 鏈接</span><br><span class="line">[text]        : 按鈕文字</span><br><span class="line">[icon]        : [可選] 圖標</span><br><span class="line">[color]       : [可選] 按鈕背景顔色(默認style時）</span><br><span class="line">                      按鈕字體和邊框顔色(outline時)</span><br><span class="line">                      default/blue/pink/red/purple/orange/green</span><br><span class="line">[style]       : [可選] 按鈕樣式 默認實心</span><br><span class="line">                      outline/留空</span><br><span class="line">[layout]      : [可選] 按鈕佈局 默認為line</span><br><span class="line">                      block/留空</span><br><span class="line">[position]    : [可選] 按鈕位置 前提是設置了layout為block 默認為左邊</span><br><span class="line">                      center/right/留空</span><br><span class="line">[size]        : [可選] 按鈕大小</span><br><span class="line">                      larger/留空</span><br></pre></td></tr></table></figure>
-<p>This is my website, click the button <a class="btn-beautify " href="https://butterfly.js.org/" 
-  title="Butterfly"><span>Butterfly</span></a><br>This is my website, click the button <a class="btn-beautify " href="https://butterfly.js.org/" 
-  title="Butterfly"><i class="far fa-hand-point-right"></i><span>Butterfly</span></a><br>This is my website, click the button <a class="btn-beautify outline" href="https://butterfly.js.org/" 
-  title="Butterfly"><span>Butterfly</span></a><br>This is my website, click the button <a class="btn-beautify outline" href="https://butterfly.js.org/" 
-  title="Butterfly"><i class="far fa-hand-point-right"></i><span>Butterfly</span></a><br>This is my website, click the button <a class="btn-beautify larger" href="https://butterfly.js.org/" 
-  title="Butterfly"><i class="far fa-hand-point-right"></i><span>Butterfly</span></a></p>
+
+
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
       <categories>
