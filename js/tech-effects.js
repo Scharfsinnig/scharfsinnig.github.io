@@ -9,9 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initEnergyRipples();
     initQuantumEffects();
     initTechEnhancements();
-    initDigitalRain();
+    initMatrixRain(); // 更酷的黑客帝国矩阵雨
     initLightBeam();
     initHolographicGlitch();
+    initRopeRobot(); // 文章页右侧“拉绳机器人”返回顶部
 });
 
 // 流星雨效果
@@ -587,3 +588,124 @@ function createQuantumBurst(x, y) {
   window.addEventListener('load', init);
   setTimeout(init, 800);
 })();
+
+// ========== Matrix-style code rain (black/green) ==========
+function initMatrixRain() {
+  try {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'matrix-rain-canvas';
+    canvas.style.position = 'fixed';
+    canvas.style.inset = '0';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.zIndex = '-1';
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzアイウエオカキクケコサシスセソﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓ0123456789';
+    const fontSize = 16;
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      reseed();
+    };
+
+    let columns = 0;
+    let drops = [];
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Seed columns at random heights so first paint is already full
+    let columns = 0;
+    let drops = [];
+    const reseed = () => {
+      columns = Math.floor(canvas.width / fontSize);
+      drops = new Array(columns).fill(0).map(() => Math.floor(Math.random() * (canvas.height / fontSize)));
+    };
+    reseed();
+
+    // Draw every frame for responsiveness; update positions at a slower interval
+    let lastUpdate = 0;
+    const interval = 120; // ms between head steps (bigger = slower)
+
+    function animate(ts) {
+      requestAnimationFrame(animate);
+
+      // draw trail each frame (fast)
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+        ctx.fillStyle = 'rgba(0, 255, 140, 0.85)';
+        ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, y);
+      }
+
+      if (!lastUpdate) lastUpdate = ts;
+      if (ts - lastUpdate >= interval) {
+        for (let i = 0; i < drops.length; i++) {
+          const y = drops[i] * fontSize;
+          if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
+          else drops[i]++;
+        }
+        lastUpdate = ts;
+      }
+    }
+    requestAnimationFrame(animate);
+  } catch (e) { /* noop */ }
+}
+
+// ========== Cute rope robot back-to-top (post pages only) ==========
+function initRopeRobot() {
+  try {
+    if (!(window.GLOBAL_CONFIG_SITE && GLOBAL_CONFIG_SITE.isPost)) return;
+    if (document.querySelector('.rope-bot')) return;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'rope-bot';
+    wrap.innerHTML = `
+      <div class="rope" aria-hidden="true"></div>
+      <button class="bot" aria-label="返回顶部" title="返回顶部">
+        <svg viewBox="0 0 80 96" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#00ff8c"/>
+              <stop offset="100%" stop-color="#00c16a"/>
+            </linearGradient>
+          </defs>
+          <!-- rope hook -->
+          <rect x="38" y="4" width="4" height="10" rx="2" fill="#00ff8c"/>
+          <!-- head -->
+          <rect x="18" y="16" width="44" height="32" rx="10" stroke="url(#g)" stroke-width="2" fill="rgba(0,255,140,0.08)"/>
+          <!-- eyes -->
+          <g class="eyes">
+            <circle class="eye" cx="32" cy="32" r="5" fill="#00ff8c"/>
+            <circle class="eye" cx="48" cy="32" r="5" fill="#00ff8c"/>
+          </g>
+          <!-- antenna -->
+          <rect x="39" y="10" width="2" height="6" rx="1" fill="#00ff8c"/>
+          <circle cx="40" cy="9" r="3" fill="#00ff8c"/>
+          <!-- body -->
+          <rect x="22" y="50" width="36" height="18" rx="6" fill="url(#g)" opacity=".25"/>
+          <!-- left hand -->
+          <rect class="hand hand-l" x="14" y="52" width="10" height="4" rx="2" fill="#00ff8c"/>
+          <!-- right hand (wave) -->
+          <rect class="hand hand-r" x="56" y="52" width="10" height="4" rx="2" fill="#00ff8c"/>
+        </svg>
+      </button>
+    `;
+    document.body.appendChild(wrap);
+
+    const btn = wrap.querySelector('.bot');
+    btn.addEventListener('click', () => {
+      try {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (e) {
+        window.scrollTo(0, 0);
+      }
+    });
+  } catch (e) { /* noop */ }
+}
+
