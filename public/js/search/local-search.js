@@ -91,83 +91,76 @@ window.addEventListener('load', () => {
       let count = 0
       // perform local searching
       dataObj.then(data => {
-        data.forEach(data => {
-          let isMatch = true
-          let dataTitle = data.title ? data.title.trim().toLowerCase() : ''
-          const dataContent = data.content ? data.content.trim().replace(/<[^>]+>/g, '').toLowerCase() : ''
-          const dataUrl = data.url.startsWith('/') ? data.url : GLOBAL_CONFIG.root + data.url
-          let indexTitle = -1
-          let indexContent = -1
-          let firstOccur = -1
-          // only match articles with not empty titles and contents
-          if (dataTitle !== '' || dataContent !== '') {
-            keywords.forEach((keyword, i) => {
-              indexTitle = dataTitle.indexOf(keyword)
-              indexContent = dataContent.indexOf(keyword)
-              if (indexTitle < 0 && indexContent < 0) {
-                isMatch = false
-              } else {
-                if (indexContent < 0) {
-                  indexContent = 0
-                }
-                if (i === 0) {
-                  firstOccur = indexContent
-                }
-              }
-            })
-          } else {
-            isMatch = false
+        const phrase = keywords.join(' ').trim()
+        const escapeReg = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+        const results = []
+
+        data.forEach(item => {
+          let titleRaw = item.title ? item.title.trim() : ''
+          let contentRaw = item.content ? item.content.trim().replace(/<[^>]+>/g, '') : ''
+          const dataUrl = item.url.startsWith('/') ? item.url : GLOBAL_CONFIG.root + item.url
+          const title = titleRaw.toLowerCase()
+          const content = contentRaw.toLowerCase()
+          if (!title && !content) return
+
+          let missing = false
+          let occTitle = 0
+          let occContent = 0
+          let firstOccur = Number.MAX_SAFE_INTEGER
+
+          keywords.forEach(k => {
+            const re = new RegExp(escapeReg(k), 'gi')
+            const mT = title.match(re)
+            const mC = content.match(re)
+            const cT = mT ? mT.length : 0
+            const cC = mC ? mC.length : 0
+            if (cT + cC === 0) missing = true
+            occTitle += cT
+            occContent += cC
+            const idxT = title.indexOf(k)
+            const idxC = content.indexOf(k)
+            const idx = [idxT, idxC].filter(x => x >= 0).sort((a,b)=>a-b)[0]
+            if (idx !== undefined) firstOccur = Math.min(firstOccur, idx)
+          })
+          if (missing) return
+
+          let score = occTitle * 5 + occContent * 1
+          if (phrase) {
+            if (title.includes(phrase)) score += 8
+            if (content.includes(phrase)) score += 4
           }
+          if (Number.isFinite(firstOccur)) score += Math.max(0, 30 - Math.floor(firstOccur / 5))
 
-          // show search results
-          if (isMatch) {
-            if (firstOccur >= 0) {
-              // cut out 130 characters
-              // let start = firstOccur - 30 < 0 ? 0 : firstOccur - 30
-              // let end = firstOccur + 50 > dataContent.length ? dataContent.length : firstOccur + 50
-              let start = firstOccur - 30
-              let end = firstOccur + 100
-              let pre = ''
-              let post = ''
+          // Build highlighted title and snippet
+          let highlightedTitle = titleRaw
+          let start = Math.max(0, (firstOccur || 0) - 30)
+          let end = Math.min(contentRaw.length, start + 130)
+          let pre = start > 0 ? '...' : ''
+          let post = end < contentRaw.length ? '...' : ''
+          let snippet = contentRaw.substring(start, end)
 
-              if (start < 0) {
-                start = 0
-              }
+          keywords.forEach(k => {
+            const regS = new RegExp(escapeReg(k), 'gi')
+            snippet = snippet.replace(regS, '<span class="search-keyword">' + k + '</span>')
+            highlightedTitle = highlightedTitle.replace(regS, '<span class="search-keyword">' + k + '</span>')
+          })
 
-              if (start === 0) {
-                end = 100
-              } else {
-                pre = '...'
-              }
-
-              if (end > dataContent.length) {
-                end = dataContent.length
-              } else {
-                post = '...'
-              }
-
-              let matchContent = dataContent.substring(start, end)
-
-              // highlight all keywords
-              keywords.forEach(keyword => {
-                const regS = new RegExp(keyword, 'gi')
-                matchContent = matchContent.replace(regS, '<span class="search-keyword">' + keyword + '</span>')
-                dataTitle = dataTitle.replace(regS, '<span class="search-keyword">' + keyword + '</span>')
-              })
-
-              str += '<div class="local-search__hit-item"><a href="' + dataUrl + '" class="search-result-title">' + dataTitle + '</a>'
-              count += 1
-
-              if (dataContent !== '') {
-                str += '<p class="search-result">' + pre + matchContent + post + '</p>'
-              }
-            }
-            str += '</div>'
-          }
+          results.push({ url: dataUrl, title: highlightedTitle, snippet: pre + snippet + post, score })
         })
+
+        results.sort((a, b) => b.score - a.score)
+        const limited = results.slice(0, 50)
+        limited.forEach(r => {
+          str += '<div class="local-search__hit-item"><a href="' + r.url + '" class="search-result-title">' + r.title + '</a>'
+          count += 1
+          if (r.snippet && r.snippet.trim()) {
+            str += '<p class="search-result">' + r.snippet + '</p>'
+          }
+          str += '</div>'
+        })
+
         if (count === 0) {
-          str += '<div id="local-search__hits-empty">' + GLOBAL_CONFIG.localSearch.languages.hits_empty.replace(/\$\{query}/, this.value.trim()) +
-            '</div>'
+          str += '<div id="local-search__hits-empty">' + GLOBAL_CONFIG.localSearch.languages.hits_empty.replace(/\$\{query}/, this.value.trim()) + '</div>'
         }
         str += '</div>'
         $resultContent.innerHTML = str

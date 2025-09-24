@@ -112,3 +112,10 @@ deploy:
   repo: https://github.com/Scharfsinnig/scharfsinnig.github.io.git
   branch: main
   message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}"
+
+
+# Search index (use hexo-generator-searchdb)
+search:
+  path: search.json
+  field: post
+  content: true

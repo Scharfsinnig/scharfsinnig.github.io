@@ -56,9 +56,11 @@ algolia_search:
 # Local search
 local_search:
   enable: true
+  preload: true
+  path: /search.json
   labels:
-    input_placeholder: Search for Posts
-    hits_empty: "We didn't find any results for the search: ${query}" # 如果没有查到内容相关内容显示
+    input_placeholder: 搜索文章（支持多关键词）
+    hits_empty: "没有找到与 ${query} 相关的内容"
 
 
 # Math (數學)
