@@ -1,0 +1,60 @@
+<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>/* Custom tweaks: archive overview, tag cloud scroll, buttons */
+
+/* Center and emphasize archive overview title */
+#archive .article-sort-title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin: 0 auto 1.2rem;
+}
+
+/* Fold toggle button */
+.archive-toggle {
+  display: inline-block;
+  margin: 8px 0 16px;
+  padding: 6px 12px;
+  font-size: .9rem;
+  color: var(--btn-text, #fff);
+  background: var(--btn-bg, #3b82f6);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.archive-toggle:hover { filter: brightness(1.05); }
+
+/* Tag card: make tag cloud scrollable and compact */
+.card-tags .item-headline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.card-tags .tag-roll-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-color, #666);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+.card-tags .tag-roll-btn:hover { background: rgba(0,0,0,.05); }
+
+.card-tags .tag-cloud-scroll {
+  max-height: 160px;
+  overflow: auto;
+  padding: 4px 0;
+  scroll-behavior: smooth;
+}
+.card-tags .tag-cloud-scroll.spinning { filter: brightness(1.1); }
+
+/* Slightly smaller tag cloud items to be similar size as categories */
+.card-tags .card-tag-cloud a {
+  margin: 3px 6px;
+}
+
+
+/* Option B: Keep GA code but hide stats UI via CSS */
+.post-meta__views { display: none !important; }
+.ga-stats-loading { display: none !important; }
+/* Hide PV/UV items in sidebar webinfo that contain GA stats values */
+.webinfo .webinfo-item:has(.ga-stats-value) { display: none !important; }

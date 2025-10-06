@@ -69,6 +69,23 @@
       todayPvElement.textContent = formatNumber(stats.todayPageviews);
     }
 
+    // Per-post pageviews on article pages
+    const postPvElement = document.getElementById('ga-post-pageviews');
+    if (postPvElement && stats.pageViewsByPath) {
+      const path = window.location.pathname;
+      const candidates = [
+        path,
+        path.replace(/index\.html$/, ''),
+        path.endsWith('/') ? path.slice(0, -1) : path + '/',
+        path.endsWith('.html') ? path : path.replace(/\/$/, '') + '.html'
+      ];
+      let pv = 0;
+      for (const p of candidates) {
+        if (stats.pageViewsByPath[p] != null) { pv = stats.pageViewsByPath[p]; break; }
+      }
+      postPvElement.textContent = formatNumber(pv);
+    }
+
     // Remove loading spinners
     document.querySelectorAll('.ga-stats-loading').forEach(el => {
       el.style.display = 'none';
