@@ -58,3 +58,208 @@
 .ga-stats-loading { display: none !important; }
 /* Hide PV/UV items in sidebar webinfo that contain GA stats values */
 .webinfo .webinfo-item:has(.ga-stats-value) { display: none !important; }
+
+/* 工具页面自定义样式 - 两列布局 */
+#article-container .flink-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px 28px;
+  margin: 20px 0;
+}
+
+/* 重置主题对链接卡片的浮动和尺寸，配合网格布局 */
+#article-container .flink .flink-list > .flink-list-item {
+  float: none !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0; /* 使用 gap 控制间距 */
+}
+
+
+/* 移动端单列显示 */
+@media screen and (max-width: 768px) {
+  #article-container .flink-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 工具卡片样式 */
+#article-container .flink-list-item {
+  background: rgba(255,255,255,0.7);
+  border-radius: 8px;
+  box-shadow: 0 14px 38px rgba(0,0,0,.08), 0 3px 8px rgba(0,0,0,.06);
+  transition: all .3s ease, transform .6s cubic-bezier(.6,.2,.1,1);
+  overflow: hidden;
+}
+
+#article-container .flink-list-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 38px rgba(0,0,0,.14), 0 3px 8px rgba(0,0,0,.12);
+}
+/* 整卡可点击 */
+#article-container .flink-list-item a {
+  display: block;
+  padding: 18px 18px;
+  text-decoration: none;
+  color: var(--text-color);
+}
+#article-container .flink-list-item a:hover { color: var(--text-color); }
+
+/* 名称与附加信息 */
+#article-container .flink-item-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-top: 8px;
+}
+#article-container .flink-item-extra {
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: #999;
+}
+
+
+/* 工具信息区域 */
+#article-container .flink-item-info {
+  display: flex;
+  align-items: flex-start;
+  padding: 16px 12px 0;
+  line-height: 1.7;
+}
+
+/* 工具图标 */
+#article-container .flink-item-icon {
+  float: left;
+  width: 64px;
+  height: 64px;
+  margin: 10px 12px 0 0;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+/* 文本容器，名称/简介/其他 */
+#article-container .flink-item-name,
+#article-container .flink-item-desc,
+#article-container .flink-item-extra { display: block !important; }
+
+#article-container .flink-item-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+#article-container .flink-item-desc {
+  margin: 0;
+  opacity: .92;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#article-container .flink-item-extra {
+  margin-top: 6px;
+  font-size: .82rem;
+  color: #8a8a8a;
+}
+
+#article-container .flink-item-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+  display: block;
+}
+
+/* 工具详情 */
+#article-container .flink-item-details {
+  flex: 1;
+  min-width: 0;
+}
+
+#article-container .flink-item-details h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: var(--text-color);
+}
+
+#article-container .flink-item-details h3 a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+#article-container .flink-item-details h3 a:hover {
+  color: #49b1f5;
+}
+
+#article-container .flink-item-url {
+  font-size: 0.85rem;
+  color: #999;
+  margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 工具描述 */
+#article-container .flink-item-desc {
+  padding: 0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #666;
+  text-align: justify;
+}
+
+/* 分类标题 */
+#article-container .flink h2 {
+  position: relative;
+  margin: 30px 0 20px;
+  padding-left: 12px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+#article-container .flink h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 20px;
+  background: #49b1f5;
+  border-radius: 2px;
+}
+
+#article-container .flink-desc {
+  margin: -10px 0 20px;
+  padding-left: 12px;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* 暗色模式 */
+[data-theme="dark"] #article-container .flink-list-item {
+  background: rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] #article-container .flink-item-icon {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+}
+
+[data-theme="dark"] #article-container .flink-item-desc {
+  color: #aaa;
+}
+
+[data-theme="dark"] #article-container .flink-item-url {
+  color: #888;
+}
