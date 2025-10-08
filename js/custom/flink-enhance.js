@@ -1,4 +1,30 @@
 (function(){
+  // 防重：移除“友链/工具”页可能出现的重复分组（如 PJAX 或双重渲染导致）
+  function dedupeFlink(){
+    try {
+      const container = document.querySelector('#article-container .flink');
+      if (!container) return;
+      const seen = new Set();
+      // Butterfly 模板下，分组标题是 h2，后面可紧跟描述 .flink-desc 和列表 .flink-list
+      const headers = container.querySelectorAll(':scope > h2');
+      headers.forEach(h2 => {
+        const title = (h2.textContent || '').trim();
+        if (!title) return;
+        if (seen.has(title)) {
+          // 删除该重复分组的描述与列表（如果存在），再删除标题本身
+          let next = h2.nextElementSibling;
+          if (next && next.classList.contains('flink-desc')) {
+            const desc = next; next = next.nextElementSibling; desc.remove();
+          }
+          if (next && next.classList.contains('flink-list')) next.remove();
+          h2.remove();
+        } else {
+          seen.add(title);
+        }
+      });
+    } catch(e) {}
+  }
+
   // 轻量增强：保持主题原结构，仅补充“其他”信息与安全属性
   function enhanceFlink(){
     const items = document.querySelectorAll('.flink-list-item');
@@ -39,11 +65,13 @@
     });
   }
 
+  function run(){ dedupeFlink(); enhanceFlink(); }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', enhanceFlink);
+    document.addEventListener('DOMContentLoaded', run);
   } else {
-    enhanceFlink();
+    run();
   }
-  document.addEventListener('pjax:complete', enhanceFlink);
+  document.addEventListener('pjax:complete', run);
 })();
 

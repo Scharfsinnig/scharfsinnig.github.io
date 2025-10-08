@@ -25,66 +25,47 @@
     return '♪ ' + name + (artist ? (' - ' + artist) : '');
   }
 
-  function getPlayers(){
-    var fixed = null, page = null;
-    if (Array.isArray(window.aplayers)) {
-      window.aplayers.forEach(function(p){
-        if (p && p.options && p.options.fixed) fixed = fixed || p;
-        else page = page || p;
-      });
+  function getGlobal(){
+    if (window.globalAPlayer) return window.globalAPlayer;
+    if (Array.isArray(window.aplayers) && window.aplayers.length){
+      return window.aplayers[window.aplayers.length - 1];
     }
-    return { fixed: fixed, page: page };
+    return null;
   }
 
   function bind(){
-    if(!window.aplayers || !window.aplayers.length) return;
-    var players = getPlayers();
-    var fixed = players.fixed || window.aplayers[0];
-    var page = players.page;
+    var global = getGlobal();
     var el = ensureNowPlayingEl();
-    if(!el || !fixed) return;
+    if(!el || !global) return;
 
-    function update(from){
+    function update(){
       try {
-        var idx = fixed.list && fixed.list.index;
-        var audio = fixed.list && fixed.list.audios && fixed.list.audios[idx];
+        var idx = global.list && global.list.index;
+        var audio = global.list && global.list.audios && global.list.audios[idx];
         el.textContent = formatTitle(audio) || '♪ Ready';
         el.style.cursor = 'pointer';
-        el.title = (fixed.audio && !fixed.audio.paused ? '[点击暂停] ' : '[点击播放] ') + (el.textContent || '');
+        el.title = '[点击查看播放列表] ' + (el.textContent || '');
       } catch(e) {}
     }
 
-    // When user plays on page player, mirror to fixed and pause page player
-    if (page) {
-      page.on('play', function(){
-        try {
-          var idx = page.list.index;
-          if (typeof fixed.list.switch === 'function') fixed.list.switch(idx);
-          fixed.play();
-          page.pause();
-        } catch(e) {}
-      });
-    }
-
     update();
-    fixed.on('play', update);
-    fixed.on('pause', update);
-    fixed.on('listswitch', update);
-    fixed.on('loadeddata', update);
+    global.on('play', update);
+    global.on('pause', update);
+    global.on('listswitch', update);
+    global.on('loadeddata', update);
 
     el.addEventListener('click', function(){
-      try { fixed.toggle(); } catch(e) {}
+      if (typeof window.togglePlayerFlyout === 'function') window.togglePlayerFlyout();
     });
   }
 
   // Run on load and also after PJAX navigations
   function init(){
     ensureNowPlayingEl();
-    // Meting renders async; try a few times if players not ready yet
     var tries = 0;
     (function waitPlayers(){
-      if (window.aplayers && window.aplayers.length) return bind();
-      if (tries++ > 20) return; // ~2s
+      if (getGlobal()) return bind();
+      if (tries++ > 50) return; // ~5s
       setTimeout(waitPlayers, 100);
     })();
   }

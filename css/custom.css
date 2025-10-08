@@ -263,3 +263,56 @@
 [data-theme="dark"] #article-container .flink-item-url {
   color: #888;
 }
+
+
+/* ===== Global Music Player: Flyout & Fullpage ===== */
+#player-flyout {
+  position: fixed;
+  top: 84px;
+  right: 16px;
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  max-height: 80vh;
+  z-index: 9999;
+  transform: translateX(110%);
+  transition: transform .25s ease, opacity .2s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+#player-flyout.open {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+#player-flyout .aplayer {
+  box-shadow: 0 16px 40px rgba(0,0,0,.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+#player-flyout .aplayer .aplayer-list {
+  max-height: 56vh;
+  overflow: auto;
+}
+
+/* Fullpage music mode on /music/ */
+.music-fullpage #aside-content { display: none !important; }
+.music-fullpage #page { width: 100% !important; }
+.music-fullpage #article-container {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 12px 24px !important;
+}
+.music-fullpage #music-fullpage { padding: 12px 0 24px; }
+.music-fullpage #music-fullpage .aplayer { box-shadow: none; border-radius: 12px; }
+.music-fullpage #music-fullpage .aplayer .aplayer-list {
+  max-height: calc(100vh - 320px);
+  overflow: auto;
+}
+
+/* Dark mode tweaks */
+[data-theme="dark"] #player-flyout .aplayer { box-shadow: 0 16px 40px rgba(0,0,0,.6); }
+
+/* Smaller screens */
+@media (max-width: 480px) {
+  #player-flyout { top: 72px; right: 8px; width: calc(100vw - 16px); }
+}
