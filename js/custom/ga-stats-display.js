@@ -99,6 +99,8 @@
     console.log('✅ GA stats updated:', stats);
   }
 
+  let lastStats = null;
+
   /**
    * Initialize and load stats
    */
@@ -110,13 +112,18 @@
     }
 
     // Fetch and display stats
-    const stats = await fetchStats();
-    updateDisplay(stats);
+    lastStats = await fetchStats();
+    updateDisplay(lastStats);
+
+    // Re-apply on PJAX navigation (Butterfly)
+    window.addEventListener('pjax:complete', () => {
+      if (lastStats) updateDisplay(lastStats);
+    });
 
     // Set up periodic updates
     setInterval(async () => {
-      const stats = await fetchStats();
-      updateDisplay(stats);
+      lastStats = await fetchStats();
+      updateDisplay(lastStats);
     }, UPDATE_INTERVAL);
   }
 

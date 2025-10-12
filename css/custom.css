@@ -53,11 +53,8 @@
 }
 
 
-/* Option B: Keep GA code but hide stats UI via CSS */
-.post-meta__views { display: none !important; }
-.ga-stats-loading { display: none !important; }
-/* Hide PV/UV items in sidebar webinfo that contain GA stats values */
-.webinfo .webinfo-item:has(.ga-stats-value) { display: none !important; }
+/* Show GA stats UI */
+/* Removed previous rules that hid PV/UV and per-post views */
 
 /* 工具页面自定义样式 - 两列布局 */
 #article-container .flink-list {
