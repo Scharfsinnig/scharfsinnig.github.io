@@ -716,7 +716,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.lazyLoadInstance = new LazyLoad({
       elements_selector: 'img',
       threshold: 0,
-      data_src: 'lazy-src'
+      data_src: 'data-lazy-src'
     })
   }
 
