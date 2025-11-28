@@ -1,5 +1,56 @@
 <link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>/* Custom tweaks: archive overview, tag cloud scroll, buttons */
 
+/* ===== 1. 导航头：向上滑动或鼠标顶部时显示 ===== */
+/* 使用主题默认行为，只优化样式 */
+#nav.fixed {
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] #nav.fixed {
+  background: rgba(26, 26, 46, 0.95) !important;
+}
+
+/* ===== 2. 右侧辅助栏智能滚动 ===== */
+#aside-content {
+  position: sticky;
+  top: 70px; /* 导航高度 + 间距 */
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100, 180, 255, 0.3) transparent;
+}
+
+#aside-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+#aside-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#aside-content::-webkit-scrollbar-thumb {
+  background: rgba(100, 180, 255, 0.3);
+  border-radius: 2px;
+}
+
+#aside-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 180, 255, 0.5);
+}
+
+/* ===== 3. H5 移动端自适应 ===== */
+@media screen and (max-width: 768px) {
+  /* 移动端侧边栏正常布局 */
+  #aside-content {
+    position: relative;
+    top: 0;
+    max-height: none;
+    overflow: visible;
+  }
+}
+
 /* ===== 彻底移除标题前的图标，简洁科幻风格 ===== */
 #article-container h1::before,
 #article-container h2::before,
