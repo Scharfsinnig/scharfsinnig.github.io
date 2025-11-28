@@ -1,5 +1,18 @@
 <link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>/* Custom tweaks: archive overview, tag cloud scroll, buttons */
 
+/* ===== 0. 站点标题左侧太极图标 ===== */
+#site-name::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px;
+  background: url('/img/blog-icon-02.png') center/contain no-repeat;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+}
+
 /* ===== 1. 导航头：向上滑动或鼠标顶部时显示 ===== */
 /* 使用主题默认行为，只优化样式 */
 #nav.fixed {
