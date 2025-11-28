@@ -1,5 +1,49 @@
 <link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>/* Custom tweaks: archive overview, tag cloud scroll, buttons */
 
+/* ===== 彻底移除标题前的图标，简洁科幻风格 ===== */
+#article-container h1::before,
+#article-container h2::before,
+#article-container h3::before,
+#article-container h4::before,
+#article-container h5::before,
+#article-container h6::before,
+#post h1::before,
+#post h2::before,
+#post h3::before,
+#post h4::before,
+#post h5::before,
+#post h6::before,
+.post-content h1::before,
+.post-content h2::before,
+.post-content h3::before,
+.post-content h4::before,
+.post-content h5::before,
+.post-content h6::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* 简洁科幻风格标题 */
+#article-container h1,
+#article-container h2,
+#article-container h3,
+#article-container h4,
+#article-container h5,
+#article-container h6 {
+  position: relative;
+  padding-left: 0;
+  border: none;
+}
+
+#article-container h2 {
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(100, 180, 255, 0.3);
+}
+
+#article-container h3 {
+  color: #49b1f5;
+}
+
 /* Center and emphasize archive overview title */
 #archive .article-sort-title {
   text-align: center;
