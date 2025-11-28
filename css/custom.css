@@ -12,44 +12,7 @@
   background: rgba(26, 26, 46, 0.95) !important;
 }
 
-/* ===== 2. 右侧辅助栏智能滚动 ===== */
-#aside-content {
-  position: sticky;
-  top: 70px; /* 导航高度 + 间距 */
-  max-height: calc(100vh - 80px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(100, 180, 255, 0.3) transparent;
-}
-
-#aside-content::-webkit-scrollbar {
-  width: 4px;
-}
-
-#aside-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-#aside-content::-webkit-scrollbar-thumb {
-  background: rgba(100, 180, 255, 0.3);
-  border-radius: 2px;
-}
-
-#aside-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 180, 255, 0.5);
-}
-
-/* ===== 3. H5 移动端自适应 ===== */
-@media screen and (max-width: 768px) {
-  /* 移动端侧边栏正常布局 */
-  #aside-content {
-    position: relative;
-    top: 0;
-    max-height: none;
-    overflow: visible;
-  }
-}
+/* ===== 2. 右侧辅助栏样式由 independent-scroll.css 控制 ===== */
 
 /* ===== 彻底移除标题前的图标，简洁科幻风格 ===== */
 #article-container h1::before,
