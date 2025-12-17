@@ -384,3 +384,15 @@
 @media (max-width: 480px) {
   #player-flyout { top: 72px; right: 8px; width: calc(100vw - 16px); }
 }
+
+/* ===== 侧边栏头像尺寸调整 ===== */
+#aside-content .card-widget.card-info #card-info-btn img.avatar-img {
+  width: 120px !important;
+  height: 120px !important;
+}
+
+.avatar-img {
+  width: 120px !important;
+  height: 120px !important;
+  object-fit: cover;
+}
