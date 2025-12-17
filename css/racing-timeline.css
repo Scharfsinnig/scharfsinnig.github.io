@@ -1,642 +1,369 @@
 <link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>/**
- * S弯赛车跑道风格的归档时间轴
- * S-Curve Racing Track Style Timeline for Archives
+ * 现代简约风格的归档时间轴
+ * Modern Minimal Timeline for Archives
+ *
+ * 设计理念：
+ * - 简洁的垂直时间线
+ * - 优雅的卡片式布局
+ * - 柔和的色彩过渡
+ * - 流畅的交互动画
  */
 
-/* 归档页面容器 */
+/* ========================================
+   归档页面容器
+   ======================================== */
 #archive {
   position: relative;
-  padding: 40px 0;
-  background: linear-gradient(to bottom, #0a0a0a 0%, #1a1a1a 100%);
-  min-height: 100vh;
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-/* 归档标题 - 起点旗帜 */
+/* ========================================
+   归档标题
+   ======================================== */
 .article-sort-title {
   position: relative;
-  margin: 0 auto 80px !important;
-  padding: 40px 60px !important;
-  max-width: 800px;
-  background: linear-gradient(135deg, #ff006e 0%, #8338ec 50%, #00f5ff 100%);
-  border-radius: 20px;
-  color: #fff !important;
-  font-size: 2.5em !important;
-  font-weight: bold;
-  text-align: center;
-  box-shadow: 0 15px 40px rgba(0, 245, 255, 0.4);
-  overflow: hidden;
-  animation: titlePulse 3s ease-in-out infinite;
+  margin: 0 0 40px 0 !important;
+  padding: 0 0 20px 0 !important;
+  font-size: 1.8em !important;
+  font-weight: 600;
+  color: var(--font-color) !important;
+  border-bottom: 2px solid var(--light-grey, #e5e7eb);
+  letter-spacing: 0.02em;
 }
 
-@keyframes titlePulse {
-  0%, 100% {
-    box-shadow: 0 15px 40px rgba(0, 245, 255, 0.4);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 0 20px 50px rgba(255, 0, 110, 0.6);
-    transform: scale(1.02);
-  }
-}
-
-/* 起点旗帜动画效果 */
 .article-sort-title::before {
-  content: '🏁';
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2.5em;
-  animation: flagWave 2s ease-in-out infinite;
+  display: none !important;
 }
 
 .article-sort-title::after {
-  content: '🏁';
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2.5em;
-  animation: flagWave 2s ease-in-out infinite 1s;
+  display: none !important;
 }
 
-@keyframes flagWave {
-  0%, 100% { transform: translateY(-50%) rotate(0deg); }
-  25% { transform: translateY(-50%) rotate(-15deg); }
-  75% { transform: translateY(-50%) rotate(15deg); }
+[data-theme="dark"] .article-sort-title {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
-/* S弯赛道主体 - 使用SVG路径创建弯道效果 */
+/* ========================================
+   时间轴主体
+   ======================================== */
 .article-sort {
   position: relative;
-  margin: 0 auto !important;
-  padding: 60px 40px !important;
-  max-width: 900px;
-  border-left: none !important;
-  background:
-    /* 赛道路面纹理 */
-    repeating-linear-gradient(
-      90deg,
-      rgba(50, 50, 50, 0.3) 0px,
-      rgba(50, 50, 50, 0.3) 2px,
-      transparent 2px,
-      transparent 20px
-    ),
-    /* 赛道底色 */
-    linear-gradient(to bottom, #1a1a1a 0%, #0f0f0f 100%);
-  border-radius: 30px;
-  box-shadow:
-    inset 0 0 50px rgba(0, 0, 0, 0.5),
-    0 10px 40px rgba(0, 245, 255, 0.2);
+  margin: 0 !important;
+  padding: 0 0 0 40px !important;
+  border-left: 2px solid var(--light-grey, #e5e7eb) !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
-/* S弯赛道路径 - 使用伪元素创建弯曲效果 */
+[data-theme="dark"] .article-sort {
+  border-left-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* 移除所有伪元素装饰 */
 .article-sort::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 120px;
-  height: 100%;
-  transform: translateX(-50%);
-  background:
-    /* 中心虚线 */
-    repeating-linear-gradient(
-      to bottom,
-      #ffd700 0px,
-      #ffd700 30px,
-      transparent 30px,
-      transparent 60px
-    ),
-    /* 赛道主色 */
-    linear-gradient(135deg,
-      rgba(0, 245, 255, 0.15) 0%,
-      rgba(131, 56, 236, 0.15) 50%,
-      rgba(255, 0, 110, 0.15) 100%
-    );
-  border-left: 4px solid rgba(255, 255, 255, 0.3);
-  border-right: 4px solid rgba(255, 255, 255, 0.3);
-  box-shadow:
-    0 0 30px rgba(0, 245, 255, 0.4),
-    inset 0 0 30px rgba(0, 0, 0, 0.3);
-  animation: trackGlow 3s ease-in-out infinite;
-  clip-path: polygon(
-    /* 创建S弯效果 */
-    0% 0%,
-    100% 0%,
-    90% 15%,
-    80% 30%,
-    70% 45%,
-    80% 60%,
-    90% 75%,
-    100% 90%,
-    100% 100%,
-    0% 100%,
-    10% 90%,
-    20% 75%,
-    30% 60%,
-    20% 45%,
-    10% 30%,
-    0% 15%
-  );
+  display: none !important;
 }
 
-@keyframes trackGlow {
-  0%, 100% {
-    box-shadow:
-      0 0 30px rgba(0, 245, 255, 0.4),
-      inset 0 0 30px rgba(0, 0, 0, 0.3);
-  }
-  50% {
-    box-shadow:
-      0 0 50px rgba(255, 0, 110, 0.6),
-      inset 0 0 30px rgba(0, 0, 0, 0.3);
-  }
+.article-sort::after {
+  display: none !important;
 }
 
-/* 年份标记 - 赛道检查点 */
+/* ========================================
+   年份标记 - Sticky 效果
+   ======================================== */
 .article-sort-item.year {
-  position: relative;
-  margin: 60px auto 60px !important;
-  padding: 25px 50px !important;
-  max-width: 400px;
-  background:
-    /* 检查点旗帜图案 */
-    repeating-linear-gradient(
-      45deg,
-      #000 0px,
-      #000 20px,
-      #fff 20px,
-      #fff 40px
-    ),
-    linear-gradient(135deg, #ff006e 0%, #8338ec 100%);
-  background-size: 100% 100%, 100% 100%;
-  background-blend-mode: overlay, normal;
-  border-radius: 50px;
-  color: #fff !important;
-  font-size: 2em !important;
-  font-weight: bold;
-  text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  box-shadow:
-    0 10px 30px rgba(255, 0, 110, 0.5),
-    inset 0 0 20px rgba(255, 255, 255, 0.2);
-  transform-origin: center;
-  animation: checkpointPulse 2s ease-in-out infinite;
+  position: sticky;
+  top: 70px;
   z-index: 10;
+  margin: 0 0 20px -40px !important;
+  padding: 12px 20px 12px 40px !important;
+  background: var(--card-bg, #fff) !important;
+  font-size: 1.5em !important;
+  font-weight: 700;
+  color: var(--font-color) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  animation: none !important;
+  text-shadow: none !important;
+  letter-spacing: 0.05em;
 }
 
-@keyframes checkpointPulse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow:
-      0 10px 30px rgba(255, 0, 110, 0.5),
-      inset 0 0 20px rgba(255, 255, 255, 0.2);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow:
-      0 15px 40px rgba(255, 0, 110, 0.7),
-      inset 0 0 30px rgba(255, 255, 255, 0.3);
-  }
-}
-
-/* 年份标记的奖杯图标 */
+/* 年份左侧的圆点标记 */
 .article-sort-item.year::before {
-  content: '🏆';
+  content: '' !important;
   position: absolute;
-  left: 15px;
+  left: -6px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.5em;
-  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
-  animation: trophySpin 4s ease-in-out infinite;
+  width: 12px;
+  height: 12px;
+  background: #667eea;
+  border-radius: 50%;
+  border: 3px solid var(--card-bg, #fff);
+  box-shadow: 0 0 0 2px #667eea;
+  animation: none !important;
+  filter: none !important;
 }
 
-@keyframes trophySpin {
-  0%, 100% {
-    transform: translateY(-50%) rotate(0deg) scale(1);
-  }
-  50% {
-    transform: translateY(-50%) rotate(360deg) scale(1.2);
-  }
-}
-
-/* 年份标记的旗帜图标 */
 .article-sort-item.year::after {
-  content: '🏁';
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.5em;
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
-  animation: flagWave 2s ease-in-out infinite;
+  display: none !important;
 }
 
-/* 文章项 - 在赛道上的赛车 */
+[data-theme="dark"] .article-sort-item.year {
+  background: var(--card-bg, #1e1e2e) !important;
+}
+
+[data-theme="dark"] .article-sort-item.year::before {
+  border-color: var(--card-bg, #1e1e2e);
+}
+
+/* ========================================
+   文章项 - 卡片式布局
+   ======================================== */
 .article-sort-item:not(.year) {
   position: relative;
-  margin: 30px auto !important;
-  padding: 20px 25px !important;
-  max-width: 700px;
-  background:
-    /* 赛车车身效果 */
-    linear-gradient(135deg,
-      rgba(255, 255, 255, 0.98) 0%,
-      rgba(240, 248, 255, 0.98) 100%
-    );
-  border-radius: 20px;
-  border: 3px solid transparent;
-  border-image: linear-gradient(135deg, #00f5ff, #8338ec, #ff006e) 1;
-  box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation: carEnter 0.6s ease-out;
-  /* 让文章项沿着S弯排列 */
-  transform-origin: center;
+  margin: 0 0 24px 0 !important;
+  padding: 16px 20px !important;
+  background: var(--card-bg, #fff);
+  border-radius: 12px;
+  border: 1px solid var(--light-grey, #e5e7eb);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s ease;
+  animation: none !important;
+  transform: none !important;
 }
 
-/* 奇数项向左偏移 */
-.article-sort-item:not(.year):nth-child(4n+1) {
-  transform: translateX(-50px);
-}
-
-/* 偶数项向右偏移 */
+/* 移除所有偏移效果 */
+.article-sort-item:not(.year):nth-child(4n+1),
 .article-sort-item:not(.year):nth-child(4n+3) {
-  transform: translateX(50px);
+  transform: none !important;
 }
 
 /* 暗色模式适配 */
 [data-theme="dark"] .article-sort-item:not(.year) {
-  background: linear-gradient(135deg,
-    rgba(30, 30, 46, 0.98) 0%,
-    rgba(40, 42, 54, 0.98) 100%
-  );
-  color: #e0e0e0;
+  background: var(--card-bg, #1e1e2e);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes carEnter {
-  0% {
-    opacity: 0;
-    transform: translateY(50px) scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* 文章项悬停效果 - 赛车加速 */
+/* 文章项悬停效果 */
 .article-sort-item:not(.year):hover {
-  transform: translateY(-10px) scale(1.05) !important;
-  box-shadow:
-    0 20px 40px rgba(0, 245, 255, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  border-image: linear-gradient(135deg, #ff006e, #ffd700, #00f5ff) 1;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: #667eea;
 }
 
-/* 文章项的赛车图标 - 在赛道上行驶 */
+[data-theme="dark"] .article-sort-item:not(.year):hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border-color: #667eea;
+}
+
+/* 文章项左侧的圆点标记 */
 .article-sort-item:not(.year)::before {
-  content: '🏎️';
+  content: '' !important;
   position: absolute;
-  left: -80px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2.5em;
-  opacity: 0;
-  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
-  transition: all 0.4s ease;
+  left: -46px;
+  top: 24px;
+  width: 8px;
+  height: 8px;
+  background: var(--card-bg, #fff);
+  border: 2px solid #667eea;
+  border-radius: 50%;
+  transition: all 0.25s ease;
+  opacity: 1 !important;
+  filter: none !important;
+  animation: none !important;
+  font-size: inherit !important;
 }
 
 .article-sort-item:not(.year):hover::before {
-  opacity: 1;
-  left: -100px;
-  animation: carDrift 0.6s ease-in-out;
+  background: #667eea;
+  transform: scale(1.2);
+  left: -46px !important;
+  animation: none !important;
 }
 
-@keyframes carDrift {
-  0%, 100% {
-    transform: translateY(-50%) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-60%) rotate(-10deg);
-  }
-  75% {
-    transform: translateY(-40%) rotate(10deg);
-  }
+[data-theme="dark"] .article-sort-item:not(.year)::before {
+  background: var(--card-bg, #1e1e2e);
 }
 
-/* 添加尾气效果 */
+[data-theme="dark"] .article-sort-item:not(.year):hover::before {
+  background: #667eea;
+}
+
+/* 移除尾气效果 */
+.article-sort-item:not(.year)::after {
+  display: none !important;
+}
+
 .article-sort-item:not(.year):hover::after {
-  content: '💨';
-  position: absolute;
-  right: -60px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2em;
-  opacity: 0.6;
-  animation: smoke 0.8s ease-out;
+  display: none !important;
 }
 
-@keyframes smoke {
-  0% {
-    opacity: 0.6;
-    transform: translateY(-50%) translateX(0) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-50%) translateX(50px) scale(1.5);
-  }
-}
-
-/* 文章标题 */
+/* ========================================
+   文章标题
+   ======================================== */
 .article-sort-item-title {
-  font-size: 1.2em !important;
-  font-weight: 600;
-  color: #2d3748 !important;
-  transition: all 0.3s ease;
-}
-
-[data-theme="dark"] .article-sort-item-title {
-  color: #e0e0e0 !important;
+  font-size: 1.05em !important;
+  font-weight: 500;
+  color: var(--font-color) !important;
+  transition: color 0.2s ease;
+  text-shadow: none !important;
 }
 
 .article-sort-item-title:hover {
-  color: #00f5ff !important;
-  text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+  color: #667eea !important;
+  text-shadow: none !important;
 }
 
-/* 文章时间 */
+/* ========================================
+   文章时间
+   ======================================== */
 .article-sort-item-time {
   display: inline-flex;
   align-items: center;
-  margin-bottom: 8px;
-  padding: 5px 15px;
-  background: linear-gradient(135deg, #00f5ff 0%, #8338ec 100%);
-  border-radius: 20px;
-  color: #fff !important;
-  font-size: 0.9em;
-  font-weight: 500;
-  box-shadow: 0 2px 10px rgba(0, 245, 255, 0.3);
+  margin-bottom: 6px;
+  padding: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  color: var(--theme-meta-color, #8b9dc3) !important;
+  font-size: 0.85em;
+  font-weight: 400;
+  box-shadow: none !important;
 }
 
 .article-sort-item-time i {
-  margin-right: 8px;
-  animation: pulse 2s ease-in-out infinite;
+  margin-right: 6px;
+  animation: none !important;
+  color: #667eea;
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-/* 文章封面图片 */
+/* ========================================
+   文章封面图片
+   ======================================== */
 .article-sort-item-img {
   overflow: hidden;
-  width: 100px !important;
-  height: 100px !important;
-  border-radius: 12px;
-  border: 3px solid #00f5ff;
-  box-shadow: 0 5px 15px rgba(0, 245, 255, 0.3);
-  transition: all 0.3s ease;
+  width: 70px !important;
+  height: 70px !important;
+  border-radius: 8px;
+  border: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
 }
 
 .article-sort-item-img:hover {
-  transform: scale(1.1) rotate(5deg);
-  border-color: #ff006e;
-  box-shadow: 0 10px 25px rgba(255, 0, 110, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="dark"] .article-sort-item-img {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .article-sort-item-img:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .article-sort-item-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: all 0.3s ease;
+  transition: transform 0.25s ease;
 }
 
 .article-sort-item-img:hover img {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
-/* 响应式设计 */
+/* ========================================
+   响应式设计
+   ======================================== */
 @media screen and (max-width: 768px) {
   #archive {
-    padding: 20px 10px;
+    padding: 20px 15px;
   }
 
   .article-sort {
-    padding: 30px 20px !important;
-    border-radius: 15px;
-  }
-
-  .article-sort::before {
-    width: 80px;
-    clip-path: polygon(
-      10% 0%, 90% 0%,
-      85% 20%, 80% 40%,
-      85% 60%, 90% 80%,
-      90% 100%, 10% 100%,
-      15% 80%, 20% 60%,
-      15% 40%, 10% 20%
-    );
+    padding: 0 0 0 30px !important;
   }
 
   .article-sort-title {
-    font-size: 1.8em !important;
-    padding: 25px 40px !important;
-  }
-
-  .article-sort-title::before,
-  .article-sort-title::after {
-    font-size: 1.8em;
+    font-size: 1.5em !important;
+    padding: 0 0 15px 0 !important;
+    margin-bottom: 30px !important;
   }
 
   .article-sort-item.year {
-    font-size: 1.5em !important;
-    padding: 20px 35px !important;
-    max-width: 300px;
+    font-size: 1.3em !important;
+    padding: 10px 15px 10px 30px !important;
+    margin-left: -30px !important;
   }
 
-  .article-sort-item.year::before,
-  .article-sort-item.year::after {
-    font-size: 1.2em;
+  .article-sort-item.year::before {
+    left: -5px;
+    width: 10px;
+    height: 10px;
   }
 
   .article-sort-item:not(.year) {
-    max-width: 100%;
-    margin: 20px auto !important;
-  }
-
-  /* 移动端取消S弯偏移 */
-  .article-sort-item:not(.year):nth-child(4n+1),
-  .article-sort-item:not(.year):nth-child(4n+3) {
-    transform: translateX(0);
-  }
-
-  .article-sort-item:not(.year):hover {
-    transform: translateY(-5px) scale(1.02) !important;
+    padding: 12px 15px !important;
+    margin-bottom: 16px !important;
   }
 
   .article-sort-item:not(.year)::before {
-    display: none;
+    left: -36px;
+    width: 6px;
+    height: 6px;
   }
 
-  .article-sort-item:not(.year):hover::after {
-    display: none;
+  .article-sort-item:not(.year):hover::before {
+    left: -36px !important;
   }
 
   .article-sort-item-img {
-    width: 80px !important;
-    height: 80px !important;
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .article-sort-item-title {
+    font-size: 0.95em !important;
   }
 }
 
-/* 赛道边界护栏效果 */
-.article-sort::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 200px;
-  transform: translateX(-50%);
-  background:
-    /* 左侧护栏 */
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0px,
-      transparent 40px,
-      rgba(255, 0, 110, 0.3) 40px,
-      rgba(255, 0, 110, 0.3) 45px
-    ),
-    /* 右侧护栏 */
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0px,
-      transparent 40px,
-      rgba(0, 245, 255, 0.3) 40px,
-      rgba(0, 245, 255, 0.3) 45px
-    );
-  background-position: -100px 0, 100px 0;
-  background-repeat: repeat-y;
-  background-size: 4px 100%, 4px 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* 添加赛道起点和终点标记 */
-.article-sort-title + .article-sort::before {
-  /* 起点线已经在主赛道中 */
-}
-
-/* 赛道光效 */
-@keyframes roadGlow {
-  0%, 100% {
-    filter: brightness(1);
+/* ========================================
+   入场动画
+   ======================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  50% {
-    filter: brightness(1.2);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-
-
-/* ===== Roadmap Timeline Overrides (clean, chronological, alternating) ===== */
-#archive .article-sort.roadmap {
-  background: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-  max-width: 980px !important;
-  padding: 20px 0 40px !important;
-}
-#archive .article-sort.roadmap::before {
-  /* center timeline axis */
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0; left: 50%;
-  width: 2px;
-  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,245,255,0.3) 10%, rgba(131,56,236,0.3) 90%, rgba(0,0,0,0));
-  transform: translateX(-50%);
-}
-#archive .article-sort.roadmap .article-sort-item.year {
-  background: var(--card-bg, rgba(30,30,30,0.8)) !important;
-  color: var(--text-color, #fff) !important;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25) !important;
-  background-image: none !important;
-  border-radius: 14px !important;
-  padding: 10px 18px !important;
-  margin: 30px auto 10px !important;
-}
-#archive .article-sort.roadmap .article-sort-item.year::before,
-#archive .article-sort.roadmap .article-sort-item.year::after { display: none !important; }
-
-#archive .article-sort.roadmap .article-sort-item:not(.year) {
-  position: relative;
-  width: calc(50% - 50px);
-  margin: 18px 0 !important;
-  padding: 16px 18px !important;
-  background: var(--card-bg, rgba(30,30,30,0.8));
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-#archive .article-sort.roadmap .article-sort-item.is-left { margin-right: auto; }
-#archive .article-sort.roadmap .article-sort-item.is-right { margin-left: auto; }
-
-#archive .article-sort.roadmap .article-sort-item:not(.year)::before {
-  /* node dot on axis */
-  content: '';
-  position: absolute;
-  top: 22px;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: #00f5ff;
-  box-shadow: 0 0 10px rgba(0,245,255,0.6);
-}
-#archive .article-sort.roadmap .article-sort-item.is-left::before {
-  right: -55px;
-}
-#archive .article-sort.roadmap .article-sort-item.is-right::before {
-  left: -55px;
+.article-sort-item {
+  animation: fadeInUp 0.4s ease forwards;
 }
 
-#archive .article-sort.roadmap .article-sort-item:not(.year)::after {
-  /* connector to axis */
-  content: '';
-  position: absolute;
-  top: 26px; height: 2px; width: 45px;
-  background: linear-gradient(to var(--dir, right), rgba(0,245,255,0.6), rgba(131,56,236,0.6));
-}
-#archive .article-sort.roadmap .article-sort-item.is-left { --dir: right; }
-#archive .article-sort.roadmap .article-sort-item.is-left::after { right: -45px; }
-#archive .article-sort.roadmap .article-sort-item.is-right { --dir: left; }
-#archive .article-sort.roadmap .article-sort-item.is-right::after { left: -45px; }
+.article-sort-item:nth-child(1) { animation-delay: 0.05s; }
+.article-sort-item:nth-child(2) { animation-delay: 0.1s; }
+.article-sort-item:nth-child(3) { animation-delay: 0.15s; }
+.article-sort-item:nth-child(4) { animation-delay: 0.2s; }
+.article-sort-item:nth-child(5) { animation-delay: 0.25s; }
+.article-sort-item:nth-child(6) { animation-delay: 0.3s; }
+.article-sort-item:nth-child(7) { animation-delay: 0.35s; }
+.article-sort-item:nth-child(8) { animation-delay: 0.4s; }
+.article-sort-item:nth-child(9) { animation-delay: 0.45s; }
+.article-sort-item:nth-child(10) { animation-delay: 0.5s; }
 
-#archive .article-sort.roadmap .article-sort-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.28);
-}
-
-/* compact article item inner layout */
-#archive .article-sort.roadmap .article-sort-item .article-sort-item-img { display: none; }
-#archive .article-sort.roadmap .article-sort-item .content {
-  display: flex; align-items: center; gap: 10px;
-}
-#archive .article-sort.roadmap .article-sort-item .content .title {
-  font-weight: 600; color: var(--text-color, #eaeaea);
-}
-#archive .article-sort.roadmap .article-sort-item time { opacity: .7; font-size: .9em; }
-
-/* responsive */
-@media (max-width: 900px) {
-  #archive .article-sort.roadmap::before { left: 10px; transform: none; }
-  #archive .article-sort.roadmap .article-sort-item:not(.year) {
-    width: calc(100% - 30px); margin-left: 30px !important; margin-right: 0 !important;
-  }
-  #archive .article-sort.roadmap .article-sort-item.is-left::before,
-  #archive .article-sort.roadmap .article-sort-item.is-right::before { left: -25px; right: auto; }
-  #archive .article-sort.roadmap .article-sort-item.is-left::after,
-  #archive .article-sort.roadmap .article-sort-item.is-right::after { left: -45px; right: auto; width: 35px; }
-}
+/* ========================================
+   移除旧的 Roadmap 样式覆盖
+   以下样式已废弃，保留空白以防止冲突
+   ======================================== */
