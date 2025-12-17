@@ -396,3 +396,69 @@
   height: 120px !important;
   object-fit: cover;
 }
+
+/* ===== 首页大头像 Hero Avatar ===== */
+#hero-avatar {
+  margin: 30px auto 20px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 60px rgba(255, 255, 255, 0.1);
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 10;
+  position: relative;
+}
+
+#hero-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+#hero-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 80px rgba(255, 255, 255, 0.15);
+}
+
+/* 滚动时的动画头像（固定定位，用于过渡动画） */
+#hero-avatar-clone {
+  position: fixed;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  z-index: 9999;
+  pointer-events: none;
+  transition: none;
+  will-change: transform, width, height, top, left;
+}
+
+#hero-avatar-clone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+#hero-avatar-clone.animating {
+  transition: all 0.15s ease-out;
+}
+
+/* 当头像已经"落"到侧边栏时，隐藏克隆体 */
+#hero-avatar-clone.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 侧边栏头像在动画期间的状态 */
+.card-info .avatar-img.avatar-hidden {
+  opacity: 0 !important;
+}
+
+.card-info .avatar-img.avatar-visible {
+  opacity: 1 !important;
+  transition: opacity 0.2s ease;
+}
