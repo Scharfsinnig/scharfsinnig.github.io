@@ -1,257 +1,82 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>/* 文章详情页独立滚动优化 - 完全重写 */
+<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>/* 文章详情页独立滚动优化 - 鼠标悬停区域滚动 */
 
-/* 禁用body-wrap的滚动（post 页面容器） */
-#body-wrap.post {
-  overflow: hidden;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* 让header保持固定 */
-#body-wrap.post #page-header {
-  flex-shrink: 0;
-}
-
-/* 让footer保持固定 */
-#body-wrap.post #footer {
-  flex-shrink: 0;
-}
-
-/* 文章页面固定布局容器 */
-#body-wrap.post #content-inner.layout {
-  flex: 1;
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  overflow: hidden;
-  height: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px 15px;
-}
-
-/* 主内容区域 - 独立滚动容器 (#post是主内容) */
-#body-wrap.post #content-inner.layout > #post {
-  flex: 1;
-  min-width: 0;
-  height: 100%;
+/* 侧边栏固定定位，独立滚动 */
+#aside-content {
+  position: fixed;
+  top: 60px;
+  right: max(calc((100vw - 1200px) / 2), 15px);
+  width: min(300px, 25%);
+  height: calc(100vh - 80px);
   overflow-y: auto;
   overflow-x: hidden;
-  padding-right: 10px;
-}
-
-/* 侧边栏 - 独立滚动容器 */
-#body-wrap.post #content-inner.layout > #aside-content {
-  width: 26%;
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-right: 5px;
-  flex-shrink: 0;
-}
-
-/* 美化主内容区滚动条 */
-#body-wrap.post #post::-webkit-scrollbar {
-  width: 8px;
-}
-
-#body-wrap.post #post::-webkit-scrollbar-track {
-  background: rgba(0, 245, 255, 0.05);
-  border-radius: 4px;
-}
-
-#body-wrap.post #post::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #00f5ff, #8338ec);
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
-
-#body-wrap.post #post::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #00d4ff, #7028dc);
-  box-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+  z-index: 90;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 /* 美化侧边栏滚动条 */
-#body-wrap.post #aside-content::-webkit-scrollbar {
-  width: 6px;
+#aside-content::-webkit-scrollbar {
+  width: 4px;
 }
 
-#body-wrap.post #aside-content::-webkit-scrollbar-track {
-  background: rgba(131, 56, 236, 0.05);
-  border-radius: 3px;
+#aside-content::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-#body-wrap.post #aside-content::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #8338ec, #ff006e);
-  border-radius: 3px;
-  transition: all 0.3s ease;
+#aside-content::-webkit-scrollbar-thumb {
+  background: rgba(100, 180, 255, 0.3);
+  border-radius: 2px;
 }
 
-#body-wrap.post #aside-content::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #7028dc, #e0005e);
-  box-shadow: 0 0 10px rgba(131, 56, 236, 0.5);
+#aside-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 180, 255, 0.5);
 }
 
 /* Firefox滚动条样式 */
-#body-wrap.post #post,
-#body-wrap.post #aside-content {
+#aside-content {
   scrollbar-width: thin;
-  scrollbar-color: #00f5ff rgba(0, 245, 255, 0.1);
+  scrollbar-color: rgba(100, 180, 255, 0.3) transparent;
 }
 
-/* 移除sticky_layout的sticky定位 */
-#body-wrap.post #aside-content .sticky_layout {
+/* 移除sticky_layout的sticky定位，因为整个侧边栏已经fixed */
+#aside-content .sticky_layout {
   position: static !important;
   top: auto !important;
 }
 
 /* 确保侧边栏内的卡片正常显示 */
-#body-wrap.post #aside-content .card-widget {
-  margin-bottom: 20px;
+#aside-content .card-widget {
+  margin-bottom: 15px;
 }
 
 /* 平滑滚动效果 */
-#body-wrap.post #post,
-#body-wrap.post #aside-content {
+#aside-content {
   scroll-behavior: smooth;
-}
-
-/* 添加滚动指示器 - 主内容区 */
-#body-wrap.post #post::before {
-  content: '';
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 30px;
-  background: linear-gradient(to bottom, var(--card-bg), transparent);
-  pointer-events: none;
-  z-index: 10;
-}
-
-/* 添加滚动指示器 - 侧边栏 */
-#body-wrap.post #aside-content::before {
-  content: '';
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 30px;
-  background: linear-gradient(to bottom, var(--card-bg), transparent);
-  pointer-events: none;
-  z-index: 10;
 }
 
 /* 响应式设计 - 平板和手机 */
 @media screen and (max-width: 900px) {
-  /* 在小屏幕上取消固定布局，恢复正常滚动 */
-  #body-wrap.post {
-    overflow: visible;
-    height: auto;
-    display: block;
-  }
-
-  #body-wrap.post #content-inner.layout {
-    flex-direction: column;
-    height: auto;
-    overflow: visible;
-  }
-
-  #body-wrap.post #post {
-    height: auto;
-    overflow: visible;
-  }
-
-  #body-wrap.post #aside-content {
+  /* 移动端：侧边栏恢复正常布局 */
+  #aside-content {
+    position: relative;
+    top: auto;
+    right: auto;
     width: 100%;
     height: auto;
+    max-height: none;
     overflow: visible;
-  }
-
-  #body-wrap.post #post::before,
-  #body-wrap.post #aside-content::before {
-    display: none;
+    padding: 0;
   }
 }
 
-/* 优化目录卡片的滚动 - 目录卡片不需要单独滚动，因为整个侧边栏已经可以滚动 */
-#body-wrap.post #card-toc {
+/* 优化目录卡片 */
+#card-toc {
   max-height: none;
   overflow: visible;
 }
 
-/* 添加平滑的滚动动画 */
-@keyframes fadeInScroll {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-#body-wrap.post #aside-content .card-widget {
-  animation: fadeInScroll 0.5s ease-out;
-}
-
-/* 滚动时的视觉反馈 */
-#body-wrap.post #aside-content.scrolling {
-  box-shadow: inset 0 0 20px rgba(0, 245, 255, 0.1);
-}
-
-/* 添加科技感的滚动提示 */
-#body-wrap.post #aside-content .scroll-hint {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  font-size: 12px;
-  color: rgba(0, 245, 255, 0.6);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 100;
-}
-
-#body-wrap.post #aside-content:hover .scroll-hint {
-  opacity: 1;
-}
-
-/* 优化文章内容的可读性 */
-#body-wrap.post #article-container {
-  line-height: 1.8;
-  padding: 20px 0;
-}
-
-/* 添加分隔线视觉提示 */
-#body-wrap.post #content-inner.layout::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: calc(74% - 10px);
-  width: 1px;
-  background: linear-gradient(to bottom,
-    transparent,
-    rgba(0, 245, 255, 0.2) 10%,
-    rgba(0, 245, 255, 0.2) 90%,
-    transparent
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-
 /* 隐藏aside时的处理 */
-html.hide-aside #body-wrap.post #content-inner.layout::after {
+html.hide-aside #aside-content {
   display: none;
-}
-
-/* 移动端隐藏分隔线 */
-@media screen and (max-width: 900px) {
-  #body-wrap.post #content-inner.layout::after {
-    display: none;
-  }
 }
 

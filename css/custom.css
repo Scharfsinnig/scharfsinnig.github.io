@@ -1,5 +1,76 @@
 <link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>/* Custom tweaks: archive overview, tag cloud scroll, buttons */
 
+/* ===== 0. 站点标题左侧太极图标 ===== */
+#site-name::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px;
+  background: url('/img/blog-icon-02.png') center/contain no-repeat;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+}
+
+/* ===== 1. 导航头：向上滑动或鼠标顶部时显示 ===== */
+/* 使用主题默认行为，只优化样式 */
+#nav.fixed {
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] #nav.fixed {
+  background: rgba(26, 26, 46, 0.95) !important;
+}
+
+/* ===== 2. 右侧辅助栏样式由 independent-scroll.css 控制 ===== */
+
+/* ===== 彻底移除标题前的图标，简洁科幻风格 ===== */
+#article-container h1::before,
+#article-container h2::before,
+#article-container h3::before,
+#article-container h4::before,
+#article-container h5::before,
+#article-container h6::before,
+#post h1::before,
+#post h2::before,
+#post h3::before,
+#post h4::before,
+#post h5::before,
+#post h6::before,
+.post-content h1::before,
+.post-content h2::before,
+.post-content h3::before,
+.post-content h4::before,
+.post-content h5::before,
+.post-content h6::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* 简洁科幻风格标题 */
+#article-container h1,
+#article-container h2,
+#article-container h3,
+#article-container h4,
+#article-container h5,
+#article-container h6 {
+  position: relative;
+  padding-left: 0;
+  border: none;
+}
+
+#article-container h2 {
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(100, 180, 255, 0.3);
+}
+
+#article-container h3 {
+  color: #49b1f5;
+}
+
 /* Center and emphasize archive overview title */
 #archive .article-sort-title {
   text-align: center;
@@ -312,4 +383,82 @@
 /* Smaller screens */
 @media (max-width: 480px) {
   #player-flyout { top: 72px; right: 8px; width: calc(100vw - 16px); }
+}
+
+/* ===== 侧边栏头像尺寸调整 ===== */
+#aside-content .card-widget.card-info #card-info-btn img.avatar-img {
+  width: 120px !important;
+  height: 120px !important;
+}
+
+.avatar-img {
+  width: 120px !important;
+  height: 120px !important;
+  object-fit: cover;
+}
+
+/* ===== 首页大头像 Hero Avatar ===== */
+#hero-avatar {
+  margin: 30px auto 20px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 60px rgba(255, 255, 255, 0.1);
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 10;
+  position: relative;
+}
+
+#hero-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+#hero-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 80px rgba(255, 255, 255, 0.15);
+}
+
+/* 滚动时的动画头像（固定定位，用于过渡动画） */
+#hero-avatar-clone {
+  position: fixed;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  z-index: 9999;
+  pointer-events: none;
+  transition: none;
+  will-change: transform, width, height, top, left;
+}
+
+#hero-avatar-clone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+#hero-avatar-clone.animating {
+  transition: all 0.15s ease-out;
+}
+
+/* 当头像已经"落"到侧边栏时，隐藏克隆体 */
+#hero-avatar-clone.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 侧边栏头像在动画期间的状态 */
+.card-info .avatar-img.avatar-hidden {
+  opacity: 0 !important;
+}
+
+.card-info .avatar-img.avatar-visible {
+  opacity: 1 !important;
+  transition: opacity 0.2s ease;
 }
